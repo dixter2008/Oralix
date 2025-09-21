@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oralix</title>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="title pic.png">
+  <link rel="stylesheet" href="homedesign.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>  
+      <img src="logo.png" class="logo">
+      <img src="text.png" class="text">
+    <ul class="nav-list">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+    
+  <!-- Two-panel container -->
+  <div class="container">
+    <!-- Left panel -->
+    <div class="panel">
+      <textarea id="text-input" placeholder="Input or paste text"></textarea>
+      <button id="summarize-btn" class="sumbtn">Summarize</button>
+    </div>
+
+    <!-- Right panel -->
+    <div class="panel">
+      <textarea id="output" class="output-box" readonly></textarea>
+      <button id="generate-btn" class="genbtn">Generate Speech</button>
+
+      <!-- Voice selection -->
+      <select id="voice-select">
+        <option value="en-US">English (US)</option>
+        <option value="en-GB">English (UK)</option>
+        <option value="es-ES">Spanish</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-column">
+      <h3>Oralix</h3>
+      <p>
+        Description: Oralix is a free online text-to-speech (TTS) tool that turns written 
+        text into spoken words and summarizes it for you. Simply input your text, and it will
+        summarize the written text and convert it into spoken words. Perfect for students 
+        who prefer auditory learning or anyone needing text aloud.
+      </p>
+    </div>
+    <p class="footer-bottom"> © 2025 Oralix. All rights reserved. </p>
+  </footer>
+  <script src="homescript.js"></script>
+</body>
+</html>
