@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from groq import Groq
@@ -29,13 +29,9 @@ def summarize():
 
     summary = chat_completion.choices[0].message.content
     return jsonify({"summary": summary})
-
-with open("home.html", "r", encoding="utf-8") as file:
-    soup = BeautifulSoup(file, "html.parser")
-
-    print(soup.title.string)
     
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
