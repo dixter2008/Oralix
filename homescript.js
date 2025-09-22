@@ -1,3 +1,7 @@
+fetch('https://oralix.onrender.com')
+.then(res => res.JSON())
+.then(data => console.log(data));
+
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navList = document.querySelector('.nav-list');
@@ -80,4 +84,5 @@ document.getElementById('generate-btn').addEventListener('click', () => {
         speechSynthesis.speak(utterance);
     }
 });
+
 });
