@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify, render_template
+from bs4 import BeautifulSoup
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from groq import Groq
 
@@ -11,7 +12,7 @@ client = Groq(api_key=API_KEY)
 
 @app.route("/")
 def home():
-    return render_template('home.html')
+    return "<h1>Welcome to the Summarizer API</h1><p>Use the /summarize endpoint with a POST request to summarize text.</p>"
 
 @app.route('/summarize', methods=['POST'])
 def summarize():
@@ -29,6 +30,12 @@ def summarize():
     summary = chat_completion.choices[0].message.content
     return jsonify({"summary": summary})
 
+with open("home.html", "r", encoding="utf-8") as file:
+    soup = BeautifulSoup(file, "html.parser")
+
+    print(soup.title.string)
+    
 if __name__ == "__main__":
 
     app.run(debug=True)
+
