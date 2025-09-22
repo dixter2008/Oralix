@@ -1,7 +1,3 @@
-fetch('https://oralix.onrender.com')
-.then(res => res.JSON())
-.then(data => console.log(data));
-
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navList = document.querySelector('.nav-list');
@@ -30,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch("http://127.0.0.1:5000/summarize", {
+            const response = await fetch("https://oralix.onrender.com", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ text: textInput })
@@ -86,3 +82,4 @@ document.getElementById('generate-btn').addEventListener('click', () => {
 });
 
 });
+
