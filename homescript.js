@@ -27,9 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             const response = await fetch("https://oralix.onrender.com", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ text: textInput })
+                .then(res => res.json())
+                .then(data =>)
             });
             const data = await response.json();
             outputBox.innerText = data.summary;
@@ -82,4 +81,5 @@ document.getElementById('generate-btn').addEventListener('click', () => {
 });
 
 });
+
 
