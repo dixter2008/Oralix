@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch("https://oralix-backend.onrender.com/summarizer", {
+            const response = await fetch("https://oralix-backend.onrender.com/summarize", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ text: textInput })
@@ -82,6 +82,7 @@ document.getElementById('generate-btn').addEventListener('click', () => {
 });
 
 });
+
 
 
 
