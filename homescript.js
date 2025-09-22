@@ -26,10 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch("https://oralix.onrender.com", {
+            fetch("https://oralix.onrender.com")
                 .then(res => res.json())
-                .then(data =>)
-            });
+                .then(data =>);
             const data = await response.json();
             outputBox.innerText = data.summary;
         } catch (error) {
@@ -81,5 +80,6 @@ document.getElementById('generate-btn').addEventListener('click', () => {
 });
 
 });
+
 
 
