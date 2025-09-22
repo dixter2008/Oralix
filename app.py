@@ -1,8 +1,10 @@
-
+import os 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from groq import Groq
 
+API_KEY = os.getenv("API_KEY")
+                    
 app = Flask(__name__)
 CORS(app)
 
@@ -33,5 +35,6 @@ def summarize():
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
