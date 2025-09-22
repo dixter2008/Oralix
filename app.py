@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from groq import Groq
 
@@ -11,7 +11,7 @@ client = Groq(api_key=API_KEY)
 
 @app.route("/")
 def home():
-    return "<h1>Welcome to the Summarizer API</h1><p>Use the /summarize endpoint with a POST request to summarize text.</p>"
+    return render_template('home.html')
 
 @app.route('/summarize', methods=['POST'])
 def summarize():
@@ -30,4 +30,5 @@ def summarize():
     return jsonify({"summary": summary})
 
 if __name__ == "__main__":
+
     app.run(debug=True)
