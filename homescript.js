@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    // HAMBURGER MENU TOOGLE
     const hamburger = document.querySelector('.hamburger');
     const navList = document.querySelector('.nav-list');
     if (hamburger && navList) {
@@ -8,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // TEXT SUMMARIZATION AND FILTERING
     document.getElementById('summarize-btn').addEventListener('click', async () => {
         const textInput = document.getElementById('text-input').value.trim();
         const outputBox = document.getElementById('output');
@@ -25,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        // BACKEND CONNECTION
         try {
             const response = await fetch("https://oralix-backend.onrender.com/summarize", {
                 method: "POST",
@@ -38,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+// VOICE SELECTION
 const voiceSelect = document.getElementById('voice-select');
 
 function populateVoiceList() {
@@ -66,7 +71,7 @@ function populateVoiceList() {
 speechSynthesis.onvoiceschanged = populateVoiceList;
 populateVoiceList();
 
-
+// GENERATE SPEECH
 document.getElementById('generate-btn').addEventListener('click', () => {
     const text = document.getElementById('output').textContent;
     if (text !== "") {
@@ -82,6 +87,7 @@ document.getElementById('generate-btn').addEventListener('click', () => {
 });
 
 });
+
 
 
 
