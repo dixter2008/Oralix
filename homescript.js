@@ -44,49 +44,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // VOICE SELECTION
 const voiceSelect = document.getElementById('voice-select');
+let availableVoices = [];
 
 function populateVoiceList() {
-    const allowedLangs = ['en', 'fil', 'es', 'ja']; // English, Filipino, Spanish, Japanese
-    const voices = speechSynthesis.getVoices();
+    availableVoices = speechSynthesis.getVoices();
+
+    // Filter for supported languages
+    const allowedLangs = ['en', 'fil', 'es', 'ja'];
+    const filteredVoices = availableVoices.filter(voice =>
+        allowedLangs.some(lang => voice.lang.toLowerCase().startsWith(lang))
+    );
+
     voiceSelect.innerHTML = ''; // Clear existing options
 
-    voices
-        .filter(voice => allowedLangs.some(lang => voice.lang.toLowerCase().startsWith(lang)))
-        .forEach((voice, index) => {
+    if (filteredVoices.length > 0) {
+        filteredVoices.forEach((voice, index) => {
             const option = document.createElement('option');
-            option.value = index;
+            option.value = voice.name;
             option.textContent = `${voice.name} (${voice.lang})${voice.default ? ' [default]' : ''}`;
             voiceSelect.appendChild(option);
         });
-
-    // Fallback if no voices match
-    if (voiceSelect.options.length === 0) {
+    } else {
         const option = document.createElement('option');
         option.textContent = 'No supported voices available';
         voiceSelect.appendChild(option);
     }
 }
 
-// Ensure voices are loaded
-speechSynthesis.onvoiceschanged = populateVoiceList;
-populateVoiceList();
+// Ensure voices are loaded (some browsers delay this)
+if (typeof speechSynthesis !== 'undefined') {
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = populateVoiceList;
+    }
+    // Also call it directly in case voices are already available
+    populateVoiceList();
+}
 
-// GENERATE SPEECH
 document.getElementById('generate-btn').addEventListener('click', () => {
     const text = document.getElementById('output').textContent;
-    if (text !== "") {
-        const utterance = new SpeechSynthesisUtterance(text);
-        const selectedVoice = speechSynthesis.getVoices()[voiceSelect.value];
-        if (selectedVoice) {
-            utterance.voice = selectedVoice;
-        }
-        utterance.lang = selectedVoice?.lang || 'en-US';
-        speechSynthesis.cancel(); // Stop any ongoing speech
-        speechSynthesis.speak(utterance);
+    if (text.trim() === '') return;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    const selectedVoiceName = voiceSelect.value;
+    const selectedVoice = availableVoices.find(voice => voice.name === selectedVoiceName);
+
+    if (selectedVoice) {
+        utterance.voice = selectedVoice;
+        utterance.lang = selectedVoice.lang;
+    } else {
+        utterance.lang = 'en-US'; // Fallback
     }
+
+    speechSynthesis.cancel(); // Stop any ongoing speech
+    speechSynthesis.speak(utterance);
+});
 });
 
-});
 
 
 
