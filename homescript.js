@@ -92,13 +92,14 @@ document.getElementById('generate-btn').addEventListener('click', () => {
         utterance.voice = selectedVoice;
         utterance.lang = selectedVoice.lang;
     } else {
-        utterance.lang = 'en-US'; // Fallback
+        utterance.lang = ''; // Fallback
     }
 
     speechSynthesis.cancel(); // Stop any ongoing speech
     speechSynthesis.speak(utterance);
 });
 });
+
 
 
 
