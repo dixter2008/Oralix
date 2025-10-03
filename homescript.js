@@ -98,7 +98,20 @@ document.getElementById('generate-btn').addEventListener('click', () => {
     speechSynthesis.cancel(); // Stop any ongoing speech
     speechSynthesis.speak(utterance);
 });
+     // Stop speech button
+
+        document.getElementById('stop-btn').addEventListener('click', () => {
+            speechSynthesis.cancel();
+        });
+
+    // Clear output button
+
+        document.getElementById('clear-btn').addEventListener('click', () => {
+            const outputBox = document.getElementById('output');
+            outputBox.innerText = '';
+        });
 });
+
 
 
 
