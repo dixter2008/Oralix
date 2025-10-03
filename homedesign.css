@@ -165,7 +165,7 @@ textarea {
 }
 
 /* Buttons */
-.sumbtn, .genbtn {
+.sumbtn, .genbtn, .stopbtn, .cbtn {
   width: 100%;
   padding: 14px;
   border: none;
@@ -179,9 +179,13 @@ textarea {
 
 .sumbtn { background-color: #15dd0f; color: white; }
 .genbtn { background-color: #36b3ff; color: white; }
+.stopbtn { background-color: #ff5733; color: white; }
+.cbtn { background-color: #888888; color: white; }
 
 .sumbtn:hover { background: #0cbf0a; }
 .genbtn:hover { background: #1e90ff; }
+.stopbtn:hover { background: #e04e2a; }
+.cbtn:hover { background: #666666; }  
 
 /* Voice dropdown */
 #voice-select {
@@ -307,4 +311,5 @@ textarea {
         font-size: 0.9rem;
     }
 }
+
 
